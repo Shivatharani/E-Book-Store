@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Shiva's E-Book Store</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="/home">📚 E-Book Store</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <div class="sidebar">
+  <ul>
+    <li><a href="/home">Home</a></li>
+    <li><a href="/categories">Categories</a></li>
+    <li><a href="/orders">Orders</a></li>
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="#" id="logoutBtn">Logout</a></li>
+  </ul>
+</div>
+<script>
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    if (confirm("ARE YOU SURE TO LOG OUT?")) {
+      window.location.href = '/logout'; // Or form submission
+    }
+  });
+</script>
+
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
