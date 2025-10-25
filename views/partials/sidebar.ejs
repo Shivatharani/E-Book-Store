@@ -1,0 +1,240 @@
+<!-- Sidebar Toggle -->
+<button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle Sidebar" title="Toggle Sidebar">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- Sidebar Container -->
+<div class="sidebar" id="sidebar">
+  <ul class="sidebar-menu">
+    <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="/home?category=All"><i class="fas fa-th-list"></i> All Books</a></li>
+
+    <!-- Authors Section with toggle arrow -->
+    <li>
+      <button id="authorsToggleBtn" aria-expanded="false" aria-controls="authorsList" 
+        style="background:none; border:none; color:white; font-weight:bold; width:100%; text-align:left; padding: 0; cursor:pointer;">
+        <i class="fas fa-user-edit"></i> Authors
+        <i id="authorsToggleIcon" class="fas fa-chevron-down" style="float:right; margin-top: 3px;"></i>
+      </button>
+
+      <ul class="author-list" id="authorsList" style="display:none; margin-top:8px; padding-left: 15px;">
+        <% if (allAuthors && allAuthors.length > 0) { %>
+          <% allAuthors.forEach(author => { %>
+            <li>
+              <a href="/authors/<%= author._id %>" style="color:#e0e0e0; text-decoration:none;">
+                <%= author.name %>
+              </a>
+            </li>
+          <% }) %>
+        <% } else { %>
+          <li><span style="color:#ccc;">No authors available</span></li>
+        <% } %>
+      </ul>
+    </li>
+
+    <li><a href="/profile"><i class="fas fa-user"></i> Profile</a></li>
+    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+  </ul>
+</div>
+
+<!-- Sidebar Styles -->
+<style>
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 240px;
+    background-color: #003366;
+    color: white;
+    padding-top: 60px;
+    font-family: Arial, sans-serif;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.25);
+    transition: width 0.3s ease;
+    overflow-y: auto;
+    z-index: 1200;
+  }
+
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-menu li {
+    padding: 12px 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .sidebar-menu a, .sidebar-menu button {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+  }
+
+  .sidebar-menu a:hover, .sidebar-menu button:hover {
+    background-color: #00509e;
+    border-radius: 6px;
+  }
+
+  .sidebar-menu i {
+    margin-right: 12px;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .author-list {
+    list-style: none;
+    padding: 5px 0 5px 30px;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #d0d0d0;
+  }
+
+  .author-list li {
+    margin: 5px 0;
+  }
+
+  .author-list li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .author-list li a:hover {
+    color: #a8c4ff;
+    text-decoration: underline;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 250px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1300;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar-toggle span {
+    background: #fff;
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+  }
+
+  /* Collapsed sidebar style */
+  .sidebar.collapsed {
+    width: 70px;
+  }
+
+  .sidebar.collapsed .sidebar-menu li a,
+  .sidebar.collapsed .sidebar-menu li button {
+    justify-content: center;
+    font-weight: normal;
+  }
+
+  .sidebar.collapsed .sidebar-menu li a span,
+  .sidebar.collapsed .sidebar-menu li button span {
+    display: none;
+  }
+
+  .sidebar.collapsed ~ .sidebar-toggle {
+    left: 80px;
+  }
+
+  /* Page content adjusts */
+  .page-content {
+    margin-left: 240px;
+    transition: margin-left 0.3s ease;
+    padding: 20px;
+  }
+
+  .sidebar.collapsed ~ .page-content {
+    margin-left: 70px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 70px;
+    }
+    .sidebar-toggle {
+      left: 80px;
+    }
+    .page-content {
+      margin-left: 70px;
+    }
+  }
+</style>
+
+<!-- Sidebar Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const pageContent = document.querySelector('.page-content');
+
+    toggleBtn.addEventListener('click', function () {
+      sidebar.classList.toggle('collapsed');
+      if (sidebar.classList.contains('collapsed')) {
+        toggleBtn.style.left = '80px';
+        if (pageContent) pageContent.style.marginLeft = '70px';
+      } else {
+        toggleBtn.style.left = '250px';
+        if (pageContent) pageContent.style.marginLeft = '240px';
+      }
+    });
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          window.location.href = '/logout';
+        }
+      });
+    }
+
+    // Authors toggle
+    const authorsToggleBtn = document.getElementById('authorsToggleBtn');
+    const authorsList = document.getElementById('authorsList');
+    const authorsToggleIcon = document.getElementById('authorsToggleIcon');
+
+    if (authorsToggleBtn && authorsList && authorsToggleIcon) {
+      authorsToggleBtn.addEventListener('click', function () {
+        const expanded = authorsToggleBtn.getAttribute('aria-expanded') === 'true';
+
+        if (expanded) {
+          authorsList.style.display = 'none';
+          authorsToggleBtn.setAttribute('aria-expanded', 'false');
+          authorsToggleIcon.classList.remove('fa-chevron-up');
+          authorsToggleIcon.classList.add('fa-chevron-down');
+        } else {
+          authorsList.style.display = 'block';
+          authorsToggleBtn.setAttribute('aria-expanded', 'true');
+          authorsToggleIcon.classList.remove('fa-chevron-down');
+          authorsToggleIcon.classList.add('fa-chevron-up');
+        }
+      });
+    }
+  });
+</script>

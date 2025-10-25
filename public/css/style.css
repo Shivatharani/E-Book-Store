@@ -1,0 +1,325 @@
+/* ===== General Styling ===== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef6ff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+}
+.page-content {
+  margin-left: 220px;
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+h1, h2 {
+  color: #003366;
+}
+
+/* ===== Filter Form ===== */
+.filter-form {
+  margin-bottom: 20px;
+  text-align: center;
+}
+input[type="text"], select {
+  padding: 8px;
+  font-size: 1rem;
+}
+button[type="submit"] {
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #00509e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button[type="submit"]:hover {
+  background-color: #003d7a;
+}
+
+/* ===== Books Grid ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+.book-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 220px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+.book-card:hover {
+  transform: scale(1.05);
+}
+.book-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.book-card a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #0033cc;
+}
+.book-card a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Add to Cart Button ===== */
+.add-to-cart-btn {
+  background: #00509e;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+.add-to-cart-btn:hover {
+  background: #003d7a;
+}
+
+/* ===== Shopping Cart Page ===== */
+.cart-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 30px auto;
+}
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8faff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+}
+.cart-item img {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+.cart-info {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  color: #333;
+}
+.remove-btn {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.remove-btn:hover {
+  background: #a93226;
+}
+.checkout-btn {
+  background: #006633;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.checkout-btn:hover {
+  background: #004d26;
+}
+.continue-btn {
+  display: inline-block;
+  margin-top: 15px;
+  color: #00509e;
+  text-decoration: none;
+  font-weight: bold;
+}
+.continue-btn:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive Fix ===== */
+@media (max-width: 768px) {
+  .page-content {
+    margin-left: 60px;
+    padding: 15px;
+  }
+  .cart-container {
+    width: 90%;
+  }
+  .book-card {
+    width: 90%;
+  }
+}
+/* ===== Auth Pages Styling ===== */
+.auth-body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Distinct backgrounds for login / registration */
+.login-body {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+.register-body {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+
+/* Centered container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-box {
+  width: 360px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 15px;
+  padding: 40px 50px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Titles */
+.auth-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+.auth-box p {
+  font-size: 0.9rem;
+  color: #eef;
+  margin-top: 5px;
+}
+
+/* Icons for header */
+.auth-box i {
+  font-size: 2rem;
+  color: #ffeb3b;
+  margin-bottom: 5px;
+}
+
+/* Inputs */
+.input-container {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin: 14px 0;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+.input-container:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+.input-container i {
+  color: #fff;
+  margin-right: 10px;
+}
+.input-container input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #fff;
+  outline: none;
+}
+.input-container input::placeholder {
+  color: #eee;
+}
+
+/* Buttons */
+.auth-button {
+  background-color: #ffeb3b;
+  color: #222;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+.auth-button:hover {
+  background-color: #fff176;
+  transform: scale(1.05);
+}
+
+/* Switch links (login ↔ register) */
+.switch-text {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+.switch-text a {
+  color: #ffeb3b;
+  text-decoration: none;
+  font-weight: bold;
+}
+.switch-text a:hover {
+  text-decoration: underline;
+}
+
+/* Error message */
+.auth-error {
+  background: rgba(255, 0, 0, 0.2);
+  color: #fff;
+  border-radius: 5px;
+  padding: 6px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .auth-box {
+    width: 90%;
+    padding: 25px 20px;
+  }
+  .auth-box h2 {
+    font-size: 1.5rem;
+  }
+}
