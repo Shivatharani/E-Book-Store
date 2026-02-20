@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Genres - SHIVA'S E BOOK STORE</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/sidebar') %>
+  <div class="page-content">
+    <h1>Genres</h1>
+    <ul>
+      <% genres.forEach(genre => { %>
+        <li><a href="/home?category=<%= genre %>"><%= genre %></a></li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

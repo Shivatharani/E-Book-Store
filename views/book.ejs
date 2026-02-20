@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= book.title %> - SHIVA'S E BOOK STORE</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .book-detail-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+    .book-cover {
+      max-width: 300px;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .author-detail {
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+    .author-photo {
+      max-width: 150px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 8px 14px;
+      background: #00509e;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    a.btn:hover {
+      background: #003d7a;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/sidebar') %>
+  <div class="page-content">
+    <div class="book-detail-container">
+      <img src="<%= book.coverImage %>" class="book-cover" alt="<%= book.title %>">
+      <h1><%= book.title %></h1>
+      <p><strong>Description:</strong> <%= book.description || 'No description available' %></p>
+      <p><strong>Price:</strong> ₹<%= book.price %></p>
+
+      <div class="author-detail">
+        <h2>Author Details</h2>
+        <img src="<%= book.author.image %>" class="author-photo" alt="<%= book.author.name %>">
+        <h3><%= book.author.name %></h3>
+        <p><%= book.author.bio || 'Biography not available' %></p>
+      </div>
+
+      <a href="/home" class="btn">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

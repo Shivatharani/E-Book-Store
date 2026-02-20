@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - SHIVA'S E BOOK STORE</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <%- include('partials/sidebar') %>
+
+  <div class="page-content">
+    <div class="cart-container">
+      <h2>Your Shopping Cart</h2>
+
+      <% if (!cart || cart.length === 0) { %>
+        <p>Your cart is empty.</p>
+        <a href="/home" class="btn continue-btn"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+      <% } else { %>
+        <ul class="cart-list">
+          <% cart.forEach(item => { %>
+            <li class="cart-item">
+              <img src="<%= item.coverImage %>" alt="Book Cover" />
+              <div class="cart-info">
+                <strong><%= item.title %></strong><br>
+                <small>by <%= item.author.name %></small><br>
+                ₹<%= item.price %> × <%= item.quantity %>
+              </div>
+              <form action="/remove-from-cart/<%= item._id %>" method="POST">
+                <button type="submit" class="remove-btn">❌ Remove</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+
+        <h3>Total Price: ₹<%= total %></h3>
+        <a href="/home" class="btn continue-btn"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
